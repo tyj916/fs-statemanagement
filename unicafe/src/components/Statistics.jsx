@@ -1,10 +1,12 @@
 import { useCounterValues } from '../store'
 
+const roundTwo = (num) => Math.round(num * 100) / 100
+
 const Statistics = () => {
   const { good, neutral, bad } = useCounterValues()
   const all = good + neutral + bad
-  const average = ((good - bad) / all).toFixed(2) || 0
-  const positive = (good / all * 100).toFixed(2) + '%'
+  const average = roundTwo((good - bad) / all) || 0
+  const positive = roundTwo(good / all * 100) || 0
   
   return (
     <div>
@@ -16,7 +18,7 @@ const Statistics = () => {
           <tr><td>bad</td><td>{bad}</td></tr>
           <tr><td>all</td><td>{all}</td></tr>
           <tr><td>average</td><td>{average}</td></tr>
-          <tr><td>positive</td><td>{positive}</td></tr>
+          <tr><td>positive</td><td>{`${positive} %`}</td></tr>
         </tbody>
       </table>
     </div>
