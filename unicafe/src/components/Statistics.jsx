@@ -2,9 +2,9 @@ import { useCounterValues } from '../store'
 
 const Statistics = () => {
   const { good, neutral, bad } = useCounterValues()
-  const all = 0
-  const average = 0
-  const positive = 0
+  const all = good + neutral + bad
+  const average = ((good - bad) / all).toFixed(2) || 0
+  const positive = (good / all * 100).toFixed(2) + '%'
   
   return (
     <div>
