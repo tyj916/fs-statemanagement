@@ -12,11 +12,11 @@ const useCounterStore = create(set => ({
   },
 }))
 
-export const useCounterValue = useCounterStore(
+export const useCounterValues = () => useCounterStore(
   useShallow(state => ({
     good: state.good,
     neutral: state.neutral,
     bad: state.bad
   }))
 )
-export const useCounterControls = useCounterStore(state => state.actions)
+export const useCounterControls = () => useCounterStore(state => state.actions)

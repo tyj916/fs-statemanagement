@@ -1,7 +1,7 @@
+import { useCounterValues } from '../store'
+
 const Statistics = () => {
-  const good = 0
-  const neutral = 0
-  const bad = 0
+  const { good, neutral, bad } = useCounterValues()
   const all = 0
   const average = 0
   const positive = 0
