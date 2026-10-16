@@ -5,7 +5,6 @@ const App = () => {
   return (
     <div>
       <AnecdoteList />
-      <h2>create new</h2>
       <AnecdoteForm />
     </div>
   )
