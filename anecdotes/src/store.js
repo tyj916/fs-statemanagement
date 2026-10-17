@@ -33,7 +33,7 @@ const useAnecdoteStore = create((set, get) => ({
       set(state => ({ 
         anecdotes: state.anecdotes.map(anecdote => 
           anecdote.id === id ? updatedAnecdote : anecdote
-        ).toSorted((a, b) => b.votes - a.votes)
+        )
       }))
     },
     add: async (content) => {
@@ -49,6 +49,6 @@ export const useAnecdotes = () => {
   const filter = useAnecdoteStore((state) => state.filter)
   return anecdotes.filter(anecdote => 
     anecdote.content.toLowerCase().includes(filter.toLowerCase())
-  )
+  ).toSorted((a, b) => b.votes - a.votes)
 }
 export const useAnecdotesActions = () => useAnecdoteStore(state => state.actions)
