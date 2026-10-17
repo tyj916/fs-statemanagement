@@ -1,6 +1,10 @@
-const Filter = () => {
-  const handleChange = (e) => {
+import { useAnecdotesActions } from "../store"
 
+const Filter = () => {
+  const { setFilter } = useAnecdotesActions()
+
+  const handleChange = (e) => {
+    setFilter(e.target.value)
   }
 
   const style = {
