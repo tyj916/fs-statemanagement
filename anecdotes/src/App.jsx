@@ -3,6 +3,7 @@ import AnecdoteForm from "./components/AnecdoteForm"
 import AnecdoteList from "./components/AnecdoteList"
 import Filter from "./components/Filter"
 import Notification from "./components/Notification"
+import ClearZeroVotes from "./components/ClearZeroVotes"
 import { useAnecdotesActions } from "./store"
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <Notification />
       <Filter />
       <AnecdoteList />
+      <ClearZeroVotes />
       <AnecdoteForm />
     </div>
   )
