@@ -40,7 +40,22 @@ const useAnecdoteStore = create((set, get) => ({
       const newAnecdote = await anecdoteService.createNew(content)
       set(state => ({ anecdotes: [...state.anecdotes, newAnecdote] }))
     },
-    setFilter: value => set({ filter: value})
+    setFilter: value => set({ filter: value}),
+    clearZeroVotes: async () => {
+      // if votes equals zero, push to zeroVotes, else push to others
+      const [zeroVotes, others] = get().anecdotes.reduce((acc, anecdote) => {
+        if (anecdote.votes === 0) {
+          acc[0].push(anecdote)
+        } else {
+          acc[1].push(anecdote)
+        }
+
+        return acc
+      }, [[], []])
+      const promiseArray = zeroVotes.map(async (anecdote) => await anecdoteService.remove(anecdote.id))
+      await Promise.all(promiseArray)
+      set(() => ({ anecdotes: others }))
+    }
   },
 }))
 

@@ -1,6 +1,10 @@
+import { useAnecdotesActions } from "../store"
+
 const ClearZeroVotes = () => {
+  const { clearZeroVotes } = useAnecdotesActions()
+
   const handleClear = () => {
-    console.log('Clear zero')
+    clearZeroVotes()
   }
 
   return (
