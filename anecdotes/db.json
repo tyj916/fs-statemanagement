@@ -35,6 +35,11 @@
       "votes": 7,
       "id": "N-34zsRgIV4",
       "likes": 8
+    },
+    {
+      "content": "test notification",
+      "votes": 0,
+      "id": "JF46wYYGsfg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
