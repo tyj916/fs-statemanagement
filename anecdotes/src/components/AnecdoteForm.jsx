@@ -3,9 +3,9 @@ import { useAnecdotesActions } from "../store"
 const AnecdoteForm = () => {
   const { add } = useAnecdotesActions()
 
-  const addAnecdote = (e) => {
+  const addAnecdote = async (e) => {
     e.preventDefault()
-    add(e.target.anecdote.value)
+    await add(e.target.anecdote.value)
     e.target.reset()
   }
 

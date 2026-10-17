@@ -32,7 +32,10 @@ const useAnecdoteStore = create((set) => ({
         anecdote.id === id ? { ...anecdote, votes: anecdote.votes + 1 } : anecdote
       ).toSorted((a, b) => b.votes - a.votes)
     })),
-    add: anecdote => set(state => ({ anecdotes: [...state.anecdotes, asObject(anecdote)] })),
+    add: async (content) => {
+      const newAnecdote = await anecdoteService.createNew(content)
+      set(state => ({ anecdotes: [...state.anecdotes, newAnecdote] }))
+    },
     setFilter: value => set({ filter: value})
   },
 }))
