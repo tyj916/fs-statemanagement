@@ -4,12 +4,20 @@ import { useNotificationActions } from "../stores/notification"
 const AnecdoteList = () => {
   const anecdotes = useAnecdotes()
 
-  const { vote } = useAnecdotesActions()
+  const { vote, remove } = useAnecdotesActions()
   const { setNotification } = useNotificationActions()
 
   const handleVote = (anecdote) => {
     vote(anecdote.id)
     setNotification(`You voted '${anecdote.content}'`)
+    setTimeout(() => {
+      setNotification('')
+    }, 5000)
+  }
+
+  const handleDelete = (anecdote) => {
+    remove(anecdote.id) 
+    setNotification(`Deleted '${anecdote.content}'`)
     setTimeout(() => {
       setNotification('')
     }, 5000)
@@ -24,6 +32,9 @@ const AnecdoteList = () => {
             has {anecdote.votes}
             <button onClick={() => handleVote(anecdote)}>vote</button>
           </div>
+          {!anecdote.votes && <div>
+            <button onClick={() => handleDelete(anecdote)}>delete</button>
+          </div>}
         </div>
       ))}
     </div>

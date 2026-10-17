@@ -55,6 +55,10 @@ const useAnecdoteStore = create((set, get) => ({
       const promiseArray = zeroVotes.map(async (anecdote) => await anecdoteService.remove(anecdote.id))
       await Promise.all(promiseArray)
       set(() => ({ anecdotes: others }))
+    },
+    remove: async (id) => {
+      await anecdoteService.delete(id)
+      set((state) => ({ anecdotes: state.anecdotes.filter(anecdote => anecdote.id !== id) }))
     }
   },
 }))
