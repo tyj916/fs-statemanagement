@@ -33,37 +33,37 @@ describe('useAnecdotesActions', () => {
     expect(anecdotesResult.current).toEqual(mockAnecdotes)
   })
 
-  it('display anecdotes sorted by votes', async () => {
-    useAnecdoteStore.setState({ anecdotes: [
-      { id: 1, content: 'A', votes: 0 },
-      { id: 2, content: 'B', votes: 2 },
-      { id: 3, content: 'C', votes: 4 },
-    ], filter: '' })
-
-    const { result: anecdotesResult } = renderHook(() => useAnecdotes())
-    expect(anecdotesResult.current).toMatchObject([
-      { id: 3, content: 'C', votes: 4 },
-      { id: 2, content: 'B', votes: 2 },
-      { id: 1, content: 'A', votes: 0 },
-    ])
-  })
-
-  it('display anecdotes filtered by given value', async () => {
-    useAnecdoteStore.setState({ anecdotes: [
+  describe('with anecdotes initialized', () => {
+    const anecdotes = [
       { id: 1, content: 'Apple Banana Carrot', votes: 0 },
       { id: 2, content: 'Apple Carrot Donkey', votes: 2 },
       { id: 3, content: 'Banana Carrot Donkey', votes: 4 },
-    ], filter: ''})
+    ]
 
-    const { result } = renderHook(() => useAnecdotesActions())
-    await act(async () => {
-      await result.current.setFilter('Apple')
+    beforeEach(() => {
+      useAnecdoteStore.setState({ anecdotes, filter: '' })
     })
 
-    const { result: anecdotesResult } = renderHook(() => useAnecdotes())
-    expect(anecdotesResult.current).toMatchObject([
-      { id: 2, content: 'Apple Carrot Donkey', votes: 2 },
-      { id: 1, content: 'Apple Banana Carrot', votes: 0 },
-    ])
+    it('display anecdotes sorted by votes', async () => {
+      const { result } = renderHook(() => useAnecdotes())
+      expect(result.current).toMatchObject([
+        { id: 3, content: 'Banana Carrot Donkey', votes: 4 },
+        { id: 2, content: 'Apple Carrot Donkey', votes: 2 },
+        { id: 1, content: 'Apple Banana Carrot', votes: 0 },
+      ])
+    })
+
+    it('display anecdotes filtered by given value', async () => {
+      const { result } = renderHook(() => useAnecdotesActions())
+      await act(async () => {
+        await result.current.setFilter('Apple')
+      })
+
+      const { result: anecdotesResult } = renderHook(() => useAnecdotes())
+      expect(anecdotesResult.current).toMatchObject([
+        { id: 2, content: 'Apple Carrot Donkey', votes: 2 },
+        { id: 1, content: 'Apple Banana Carrot', votes: 0 },
+      ])
+    })
   })
 })
