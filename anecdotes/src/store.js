@@ -71,3 +71,4 @@ export const useAnecdotes = () => {
   ).toSorted((a, b) => b.votes - a.votes)
 }
 export const useAnecdotesActions = () => useAnecdoteStore(state => state.actions)
+export default useAnecdoteStore
