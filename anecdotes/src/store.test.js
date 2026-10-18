@@ -32,4 +32,25 @@ describe('useAnecdotesActions', () => {
     const { result: anecdotesResult } = renderHook(() => useAnecdotes())
     expect(anecdotesResult.current).toEqual(mockAnecdotes)
   })
+
+  it('display anecdotes sorted by votes', async () => {
+    const mockAnecdotes = [
+      { id: 1, content: 'A', votes: 0 },
+      { id: 2, content: 'B', votes: 2 },
+      { id: 3, content: 'C', votes: 4 },
+    ]
+    anecdoteService.getAll.mockResolvedValue(mockAnecdotes)
+
+    const { result } = renderHook(() => useAnecdotesActions())
+    await act(async () => {
+      await result.current.initialize()
+    })
+
+    const { result: anecdotesResult } = renderHook(() => useAnecdotes())
+    expect(anecdotesResult.current).toMatchObject([
+      { id: 3, content: 'C', votes: 4 },
+      { id: 2, content: 'B', votes: 2 },
+      { id: 1, content: 'A', votes: 0 },
+    ])
+  })
 })
