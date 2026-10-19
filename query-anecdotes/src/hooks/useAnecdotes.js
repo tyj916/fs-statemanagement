@@ -39,7 +39,7 @@ export const useAnecdotes = () => {
     addAnecdote: (content) => newAnecdoteMutation.mutate(
       { content, votes: 0}, 
       {
-        onSuccess: () => setNotificationMessage(`anecdote ${content} added`)
+        onSuccess: () => setNotificationMessage(`anecdote ${content} created`)
       }
     ),
     voteAnecdote: (anecdote) => updateAnecdoteMutation.mutate(
