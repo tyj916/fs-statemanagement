@@ -34,6 +34,16 @@
       "content": "test notification",
       "votes": 3,
       "id": "e0b02660-77e2-4210-95ac-e7099b6f5330"
+    },
+    {
+      "content": "test notification",
+      "votes": 1,
+      "id": "65f98d1a-ce0e-4866-8b6c-fe0a73a6fc34"
+    },
+    {
+      "content": "test add",
+      "votes": 2,
+      "id": "3af09998-c62a-4539-bc95-bdef941cc52d"
     }
   ]
 }
