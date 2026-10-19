@@ -27,8 +27,13 @@
     },
     {
       "content": "test add new",
-      "votes": 1,
+      "votes": 2,
       "id": "628fdaad-81d6-4a49-881e-6bfd2155adf4"
+    },
+    {
+      "content": "test notification",
+      "votes": 2,
+      "id": "e0b02660-77e2-4210-95ac-e7099b6f5330"
     }
   ]
 }
